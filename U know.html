@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Do You Like Me?</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+
+    #invitation {
+      display: none;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 10px;
+      cursor: pointer;
+      border: none; /* Remove border */
+      border-radius: 8px; /* Rounded edges */
+    }
+
+    #noButton {
+      background-color: red;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>Do You Like Me?</h1>
+
+  <button id="yesButton" onclick="showInvitation('yes')">Yes</button>
+  <button id="noButton" onmouseover="moveNoButton()" ontouchstart="moveNoButton()" onclick="showInvitation('no')">No</button>
+
+  <div id="invitation">
+    <p id="invitationText"></p>
+  </div>
+
+  <script>
+    function showInvitation(response) {
+      const invitationDiv = document.getElementById('invitation');
+      const invitationText = document.getElementById('invitationText');
+
+      if (response === 'yes') {
+        invitationText.textContent = "I love you too!";
+      } else {
+        invitationText.textContent = "No is only for visual. Click Yes!";
+        // Automatically trigger the "Yes" button click after displaying the message
+        setTimeout(function() {
+          document.getElementById('yesButton').click();
+        }, 2000); // Adjust the delay (in milliseconds) as needed
+      }
+
+      invitationDiv.style.display = 'block';
+    }
+
+    function moveNoButton() {
+      // Move the "No" button to a new location on the page
+      const noButton = document.getElementById('noButton');
+      const newPositionX = Math.random() * (window.innerWidth - noButton.clientWidth);
+      const newPositionY = Math.random() * (window.innerHeight - noButton.clientHeight);
+
+      noButton.style.position = 'absolute';
+      noButton.style.left = newPositionX + 'px';
+      noButton.style.top = newPositionY + 'px';
+    }
+  </script>
+</body>
+</html>
